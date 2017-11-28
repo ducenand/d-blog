@@ -1,20 +1,48 @@
 <%- include('header') %>
 
-<div class="ui grid">
-  <div class="four wide column"></div>
-  <div class="eight wide column">
-    <form class="ui form segment" method="post">
-      <div class="field required">
-        <label>用户名</label>
-        <input placeholder="用户名" type="text" name="name">
+<style type="text/css">
+  .login-page {
+    max-width: 450px;
+  }
+</style>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column login-page">
+    <h2 class="ui teal image header">
+      <img src="/img/logo.png" class="image">
+      <div class="content">
+        d-blog
       </div>
-      <div class="field required">
-        <label>密码</label>
-        <input placeholder="密码" type="password" name="password">
+    </h2>
+    <form class="ui large form" method="post">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" required placeholder="用户名">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" required placeholder="密码">
+          </div>
+        </div>
+        <div>
+        <!-- 登录 -->
+          <input type="submit" class="ui fluid large teal submit button" value="登录">
+        </div>
       </div>
-      <input type="submit" class="ui button fluid" value="登录">
+
+      <div class="ui error message"></div>
+
     </form>
+
+   <!--  <div class="ui message">
+      New to us? <a href="#">Sign Up</a>
+    </div> -->
   </div>
 </div>
+
 
 <%- include('footer') %>

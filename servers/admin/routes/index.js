@@ -3,21 +3,21 @@ const router = express.Router()
 
 const checkLogin = require('../middlewares/check').checkLogin
 
-
-// router.use(function timeLog(req, res, next) {
-//   console.log('Time: ', Date.now());
-//   next();
-// });
-// define the home page route
 router.get('/',checkLogin,function(req, res) {
-  res.send('后台主页')
+  res.render('index')
 })
 
+router.get('/content',checkLogin,function(req, res) {
+  res.render('content')
+})
 
-var signup = require('./signup.js')
-router.use(signup)
+//用户相关路由
+var user = require('./user.js')
+router.use(user)
+
+//登录、登出相关相关接口
 var signin = require('./signin.js')
-router.use(signin)
-
+var signup = require('./signup.js')
+router.use(signup,signin)
 
 module.exports = router;

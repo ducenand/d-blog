@@ -9,6 +9,8 @@ const pkg = require('./package')
 const routes = require('./routes.js')
 const app = express()
 
+
+
 const config = require('config-lite')({
   config_basedir: __dirname,
   config_dir: '/servers/config'
@@ -41,6 +43,8 @@ app.locals.blog = {
 
 // 添加模板必需的三个变量
 app.use(function (req, res, next) {
+
+  // console.log(req.session)
   res.locals.user = req.session.user
   res.locals.success = req.flash('success').toString()
   res.locals.error = req.flash('error').toString()

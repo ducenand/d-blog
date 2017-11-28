@@ -1,6 +1,6 @@
 module.exports = {
 
-  port: 5200,
+  port: 5201,
   session: {
     secret: 'd-blog',
     key: 'd-blog',
@@ -9,7 +9,7 @@ module.exports = {
   mysql: {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'ducen521',
     database: 'd-blog',
     port: 3306
   },

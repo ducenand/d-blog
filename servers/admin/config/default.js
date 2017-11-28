@@ -9,7 +9,7 @@ module.exports = {
   mysql: {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'ducen521',
     database: 'd-blog',
     port: 3306
   }

@@ -1,0 +1,161 @@
+<%- include('header') %>
+<%- include('nav') %>
+
+  <section id="content">
+
+    <section class="main padder">
+
+      <div class="clearfix">
+
+        <h4><i class="icon-edit"></i>添加用户</h4>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-12">
+
+          <section class="panel">
+
+            <form class="form-horizontal" method="get" data-validate="parsley">
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">相片</label>
+
+                <div class="col-lg-9 media">
+
+                  <div class="bg-light pull-left text-center media-large thumb-large"><i class="icon-user inline icon-light icon-3x m-t-large m-b-large"></i></div>
+
+                  <div class="media-body">
+
+                    <input type="file" name="file" title="Change" class="btn btn-small btn-info m-b-small"><br>
+
+                    <button class="btn btn-small btn-default">删除</button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">邮箱</label>
+
+                <div class="col-lg-8">
+
+                  <input type="text" name="email" placeholder="test@example.com" class="bg-focus form-control" data-required="true" data-type="email">
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">密码</label>
+
+                <div class="col-lg-8">
+
+                  <input type="password" name="password" placeholder="Password" class="bg-focus form-control">
+
+                  <div class="line line-dashed m-t-large"></div>
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">用户名</label>
+
+                <div class="col-lg-8">
+
+                  <input type="text" name="username" placeholder="Username" data-required="true" class="form-control">
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">权限</label>
+
+                <div class="col-lg-4">
+
+                  <select name="account" class="form-control">
+
+                    <option value="1">Editor</option>
+
+                    <option value="0">Admin</option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">注册时间</label>
+
+                <div class="col-lg-6">
+
+                  <input type="text" class="combodate form-control" data-format="DD-MM-YYYY" data-template="D  MMM  YYYY" name="datetime" value="21-12-2012">
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label class="col-lg-3 control-label">简介</label>
+
+                <div class="col-lg-8">
+
+                  <textarea placeholder="Profile" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
+
+                 <!--  <div class="checkbox">
+
+                    <label>
+
+                      <input name="agree" type="checkbox"> Agree the <a href="#">terms and policy</a>
+
+                    </label>
+
+                  </div> -->
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <div class="col-lg-9 col-offset-3">
+
+                  <button type="submit" class="btn btn-white">Cancel</button>
+
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+
+                </div>
+
+              </div>
+
+            </form>
+
+          </section>
+
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+
+<%- include('footer') %>
