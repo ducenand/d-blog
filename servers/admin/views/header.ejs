@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="/css/plugin.css">
 
   <link rel="stylesheet" href="/css/landing.css">
-  <base target="_self">
 
   <!--[if lt IE 9]>
 
@@ -45,9 +44,9 @@
 
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-          <span class="hidden-sm-only">Admin</span>
+          <span class="hidden-sm-only"><%= user.username %></span>
 
-          <span class="thumb-small avatar inline"><img src="/images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+          <span class="thumb-small avatar inline"><img src="/img/<%= user.head_url %>" alt="Mika Sokeil" class="img-circle"></span>
 
           <b class="caret hidden-sm-only"></b>
 
@@ -65,7 +64,7 @@
 
           <li><a href="docs.html">Help</a></li> -->
 
-          <li><a href="signin.html">退出</a></li>
+          <li><a href="/admin/loginout">退出</a></li>
 
         </ul>
 

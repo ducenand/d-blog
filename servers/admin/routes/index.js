@@ -11,7 +11,7 @@ router.get('/content',checkLogin,function(req, res) {
   res.render('content')
 })
 
-//用户相关路由
+// //用户相关路由
 var user = require('./user.js')
 router.use(user)
 

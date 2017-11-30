@@ -1,8 +1,15 @@
+const fs = require('fs')
+const path = require('path')
+const sha1 = require('sha1')
+var formidable = require('formidable')
 const mysql = require('mysql')
+
 const config = require('config-lite')({
   config_basedir: __dirname,
   config_dir: '/servers/config'
 })
+
+
 
 
 var jsonWrite = function(res, result) {
@@ -23,60 +30,88 @@ const pool = mysql.createPool(config.mysql)
 module.exports = {
 
   signin: function(req, res, next) {
-    // jsonWrite(res);
-    pool.getConnection(function(err, connection) {
+    pool.getConnection(function(error, connection) {
+      let email = req.fields.email
+      let password = req.fields.password
+      connection.query('SELECT * FROM user WHERE email = ?', [email], function(error, results, fields) {
 
-      let username = req.body.username
-      let password = req.body.password
-
-      connection.query('SELECT username,password FROM user WHERE username = ?',[username], function(error, results, fields) {
-
-        if(!error) {
-          if(results[0] && password === results[0].password) {
+        if (!error) {
+          if (results[0] && sha1(password) === results[0].password) {
             req.flash('success', '登录成功')
             delete results[0].password
             req.session.user = results[0]
             res.redirect('/admin')
-          }else{
-            req.flash('error','用户名或密码错误')
+          } else {
+            req.flash('error', '用户名或密码错误')
             res.redirect('back')
           }
 
-        }else{
-          req.flash('error','sql错误，请联系管理员')
+        } else {
+          req.flash('error', 'sql错误，请联系管理员')
+          jsonWrite(res, error);
         }
-        // console.log(error,results,fields)
-        // res.send(results)
+
+        connection.release();
+        // if (error) throw error;
+
+      })
+
+    })
+
+  },
+  adduser: function(req, res, next) {
+
+    const username = req.fields.username
+
+    const email = req.fields.email
+    const type = req.fields.type
+    const profile = req.fields.profile
+
+    const head_url = req.files.file.path.split(path.sep).pop()
+    let password = req.fields.password
+
+    // 校验参数
+    try {
+      if (!(username.length >= 1 && username.length <= 10)) {
+        throw new Error('名字请限制在 1-10 个字符')
+      }
+
+      if (!(profile.length >= 1 && profile.length <= 30)) {
+        throw new Error('个人简介请限制在 1-30 个字符')
+      }
+      if (!req.files.file.name) {
+        throw new Error('缺少头像')
+      }
+      if (password.length < 6) {
+        throw new Error('密码至少 6 个字符')
+      }
+
+    } catch (e) {
+      // 注册失败，异步删除上传的头像
+      fs.unlink(req.files.file.path)
+      req.flash('error', e.message)
+      return res.redirect('back')
+    }
+    password = sha1(password)
+
+    pool.getConnection(function(err, connection) {
+
+      connection.query('INSERT INTO user (username, email, type, profile, head_url, password) values(?,?,?,?,?,?)', [username, email, type, profile, head_url, password], function(error, results, fields) {
+
+        if (!error) {
+          req.flash('success', '添加用户成功')
+          res.redirect('back')
+        } else {
+          fs.unlink(req.files.file.path)
+          req.flash('error', 'sql错误，请联系管理员')
+        }
+
         connection.release();
         if (error) throw error;
 
-      });
+      })
 
-
-
-
-
-      // console.log(param)
-      // jsonWrite(res, param)
-      // let articleAuthor = req.session.islogin.userName;
-      // let articleContent = markdown.toHTML(param.articleText);
-      // let articleLink = "localhost:3000/blog/details/" + param.articleId;
-      // 建立连接，向表中插入值
-      // insertSql: 'insert into articles(articleTitle, articleDate, articleTag, articleAuthor ,articleLink, articleText) values(?,?,?,?,?,?)',
-      // connection.query(articleSql.insertSql, [param.articleTitle, new Date(), param.articleTag, articleAuthor, articleContent], function(err, result) {
-      //     if (err) {
-      //         console.log('添加出错');
-      //         jsonWrite(res, err);
-      //     } else if (result) {
-      //         console.log('文章添加成功');
-      //         res.redirect('/admin/article');
-      //     }
-      // });
-    });
-
-
-
-
+    })
 
   }
 

@@ -21,8 +21,17 @@ module.exports = function(app) {
   app.set('view engine', 'ejs')
   app.use(express.static(path.join(__dirname, './servers/admin/public')))
   //中间件 获取参数
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
+  // app.use(bodyParser.urlencoded({ extended: true }));
+  // app.use(bodyParser.json());
+
+  // 处理表单及文件上传的中间件
+  app.use(require('express-formidable')({
+    uploadDir: path.join(__dirname, './servers/admin/public/img'), // 上传文件目录
+    keepExtensions: true// 保留后缀
+  }))
+
+
+
   app.use('/admin', require('./servers/admin/routes'))
   /** -----------admin router end----------- */
 

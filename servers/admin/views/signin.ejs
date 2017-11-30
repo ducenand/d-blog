@@ -1,48 +1,119 @@
-<%- include('header') %>
+<!DOCTYPE html>
 
-<style type="text/css">
-  .login-page {
-    max-width: 450px;
-  }
-</style>
+<html lang="en">
 
-<div class="ui middle aligned center aligned grid">
-  <div class="column login-page">
-    <h2 class="ui teal image header">
-      <img src="/img/logo.png" class="image">
-      <div class="content">
-        d-blog
+<head>
+
+  <meta charset="utf-8">
+
+  <title>登录</title>
+
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]>
+
+    <script src="/js/ie/respond.min.js"></script>
+
+    <script src="/js/ie/html5.js"></script>
+
+  <![endif]-->
+
+</head>
+
+<body>
+
+  <!-- header -->
+
+  <header id="header" class="navbar bg bg-black">
+
+   <!--  <a href="docs.html" class="btn btn-link pull-right"><i class="icon-question icon-xlarge text-default"></i></a> -->
+
+    <a class="navbar-brand" href="#">Alan</a>
+
+  </header>
+
+  <!-- / header -->
+
+  <section id="content">
+
+    <div class="main padder">
+
+      <div class="row">
+
+        <div class="col-lg-4 col-offset-4 m-t-large">
+
+          <section class="panel">
+
+            <header class="panel-heading text-center">
+
+              登 录
+
+            </header>
+
+            <form method="post" class="padder">
+
+              <div class="block">
+
+                <label class="control-label">邮箱</label>
+
+                <input type="email" required name="email" placeholder="test@example.com" class="form-control">
+
+              </div>
+
+              <div class="block">
+
+                <label class="control-label">密码</label>
+
+                <input type="password" required name="password" id="inputPassword" placeholder="Password" class="form-control">
+
+              </div>
+
+              <!-- <div class="checkbox">
+
+                <label>
+
+                  <input type="checkbox"> Keep me logged in
+
+                </label>
+
+              </div> -->
+
+             <!--  <a href="#" class="pull-right m-t-mini"><small>Forgot password?</small></a> -->
+
+              <button type="submit" class="btn btn-info">登 录</button>
+
+              <div class="line line-dashed"></div>
+
+              <!-- <a href="#" class="btn btn-facebook btn-block m-b-small"><i class="icon-facebook pull-left"></i>Sign in with Facebook</a>
+
+              <a href="#" class="btn btn-twitter btn-block"><i class="icon-twitter pull-left"></i>Sign in with Twitter</a>
+
+              <div class="line line-dashed"></div>
+
+              <p class="text-muted text-center"><small>Do not have an account?</small></p>
+
+              <a href="signup.html" class="btn btn-white btn-block">Create an account</a> -->
+
+            </form>
+
+          </section>
+
+        </div>
+
       </div>
-    </h2>
-    <form class="ui large form" method="post">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="username" required placeholder="用户名">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" required placeholder="密码">
-          </div>
-        </div>
-        <div>
-        <!-- 登录 -->
-          <input type="submit" class="ui fluid large teal submit button" value="登录">
-        </div>
-      </div>
 
-      <div class="ui error message"></div>
+    </div>
 
-    </form>
+  </section>
 
-   <!--  <div class="ui message">
-      New to us? <a href="#">Sign Up</a>
-    </div> -->
-  </div>
-</div>
-
+<%- include('components/notification') %>
 
 <%- include('footer') %>

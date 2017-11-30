@@ -35,6 +35,7 @@ app.use(session({
 
 app.use(flash())
 
+
 // 设置模板全局常量
 app.locals.blog = {
   title: pkg.name,

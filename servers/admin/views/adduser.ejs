@@ -17,7 +17,7 @@
 
           <section class="panel">
 
-            <form class="form-horizontal" method="get" data-validate="parsley">
+            <form class="form-horizontal" method="post" data-validate="parsley" enctype="multipart/form-data">
 
               <div class="form-group">
 
@@ -29,9 +29,9 @@
 
                   <div class="media-body">
 
-                    <input type="file" name="file" title="Change" class="btn btn-small btn-info m-b-small"><br>
+                    <input data-required="true" type="file" name="file" title="选择图片" class="btn btn-small btn-info m-b-small"><br>
 
-                    <button class="btn btn-small btn-default">删除</button>
+                    <!-- <button class="btn btn-small btn-default">删除</button> -->
 
                   </div>
 
@@ -57,7 +57,7 @@
 
                 <div class="col-lg-8">
 
-                  <input type="password" name="password" placeholder="Password" class="bg-focus form-control">
+                  <input data-required="true" type="password" name="password" placeholder="Password"  data-rangelength="[6,30]" class="bg-focus form-control">
 
                   <div class="line line-dashed m-t-large"></div>
 
@@ -71,7 +71,7 @@
 
                 <div class="col-lg-8">
 
-                  <input type="text" name="username" placeholder="Username" data-required="true" class="form-control">
+                  <input type="text" data-required="true" name="username" placeholder="Username" data-required="true" class="form-control">
 
                 </div>
 
@@ -83,25 +83,13 @@
 
                 <div class="col-lg-4">
 
-                  <select name="account" class="form-control">
+                  <select name="type" class="form-control">
 
-                    <option value="1">Editor</option>
+                    <option value="1">管理员</option>
 
-                    <option value="0">Admin</option>
+                    <option value="2">编辑</option>
 
                   </select>
-
-                </div>
-
-              </div>
-
-              <div class="form-group">
-
-                <label class="col-lg-3 control-label">注册时间</label>
-
-                <div class="col-lg-6">
-
-                  <input type="text" class="combodate form-control" data-format="DD-MM-YYYY" data-template="D  MMM  YYYY" name="datetime" value="21-12-2012">
 
                 </div>
 
@@ -113,17 +101,7 @@
 
                 <div class="col-lg-8">
 
-                  <textarea placeholder="Profile" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-
-                 <!--  <div class="checkbox">
-
-                    <label>
-
-                      <input name="agree" type="checkbox"> Agree the <a href="#">terms and policy</a>
-
-                    </label>
-
-                  </div> -->
+                  <textarea data-required="true" name="profile" placeholder="Profile" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[1,30]"></textarea>
 
                 </div>
 
@@ -133,9 +111,9 @@
 
                 <div class="col-lg-9 col-offset-3">
 
-                  <button type="submit" class="btn btn-white">Cancel</button>
+                  <button type="reset" class="btn btn-white">重置</button>
 
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">添加</button>
 
                 </div>
 

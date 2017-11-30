@@ -22,13 +22,12 @@ mkdir admin
 
 #### 2、安装依赖模块
 ```
-npm i mysql config-lite connect-flash ejs express express-formidable connect-redis body-parser express-session redis marked moment sha1 winston express-winston --save
+npm i mysql config-lite connect-flash ejs express express-formidable connect-redis express-session redis marked moment sha1 winston express-winston --save
 mysql:数据库
 express: web 框架
 express-session: session 中间件
 redis: 持久化保存session
 connect-redis: session 保存到redis
-body-parser: express中间件 获取post参数
 connect-flash: 页面通知的中间件，基于 session 实现
 ejs: 模板
 express-formidable:接收表单及文件上传的中间件
@@ -47,8 +46,10 @@ express-winston: express 的 winston 日志中间件
 #### 2017.11.22 /基本框架搭建
 #### 2017.11.24 /使用mysql
 #### 2017.11.28 /添加后台页面
+#### 2017.11.29 /增加用户表，后台实现增加用户功能
 
-
+## 踩的坑
+#### express 处理参数中间件 body-parser、express-formidable 不能同时用，
 
 
 

@@ -4,7 +4,7 @@
 
       <p>
 
-        <small>&copy; Alan 2017, fro Alan's blog.</small><br><br>
+        <small>&copy; Alan 2017, for Alan's blog.</small><br><br>
 
         <!-- <a href="#" class="btn btn-mini btn-circle btn-twitter"><i class="icon-twitter"></i></a>
 
@@ -61,6 +61,17 @@
 
   <script src="/js/ie/excanvas.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready( function () {
+      // 延时清除掉成功、失败提示信息
+      if ($('#notice-success').length > 0) {
+        $('#notice-success').fadeOut(5000)
+      } else if ($('#notice-error').length > 0) {
+        $('#notice-error').fadeOut(5000)
+      }
+    })
+
+  </script>
 </body>
 
 </html>
