@@ -21,7 +21,13 @@
   <link rel="stylesheet" href="/css/plugin.css">
 
   <link rel="stylesheet" href="/css/landing.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <style type="text/css">
+    .CodeMirror-fullscreen{
+      z-index: 1001
+    }
 
+  </style>
   <!--[if lt IE 9]>
 
     <script src="/js/ie/respond.min.js"></script>
@@ -72,7 +78,7 @@
 
     </ul>
 
-    <a class="navbar-brand" href="#">Alan</a>
+    <a class="navbar-brand" href="#"><%= blog.title %></a>
 
     <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
 

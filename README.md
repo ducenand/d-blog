@@ -47,6 +47,8 @@ express-winston: express 的 winston 日志中间件
 #### 2017.11.24 /使用mysql
 #### 2017.11.28 /添加后台页面
 #### 2017.11.29 /增加用户表，后台实现增加用户功能
+#### 2017.11.30 /增加文章表，后台实现添加文章
+
 
 ## 踩的坑
 #### express 处理参数中间件 body-parser、express-formidable 不能同时用，

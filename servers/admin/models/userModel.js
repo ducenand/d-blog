@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const sha1 = require('sha1')
-var formidable = require('formidable')
+const moment = require('moment')
 const mysql = require('mysql')
 
 const config = require('config-lite')({
@@ -62,13 +62,13 @@ module.exports = {
   adduser: function(req, res, next) {
 
     const username = req.fields.username
-
     const email = req.fields.email
     const type = req.fields.type
     const profile = req.fields.profile
 
     const head_url = req.files.file.path.split(path.sep).pop()
     let password = req.fields.password
+    const create_time = moment().format('YYYY-MM-DD HH:mm:ss')
 
     // 校验参数
     try {
@@ -94,21 +94,50 @@ module.exports = {
     }
     password = sha1(password)
 
-    pool.getConnection(function(err, connection) {
+    this.findUser(email, function(data, connection) {
+      if (data[0]) {
+        fs.unlink(req.files.file.path)
+        req.flash('error', 'email已被注册过')
+        res.redirect('back')
+      } else {
 
-      connection.query('INSERT INTO user (username, email, type, profile, head_url, password) values(?,?,?,?,?,?)', [username, email, type, profile, head_url, password], function(error, results, fields) {
+        connection.query('INSERT INTO user (username, email, type, profile, head_url, password,create_time) values(?,?,?,?,?,?,?)', [username, email, type, profile, head_url, password,create_time], function(error, results, fields) {
 
+          if (!error) {
+            req.flash('success', '添加用户成功')
+            res.redirect('back')
+          } else {
+            fs.unlink(req.files.file.path)
+            req.flash('error', 'sql错误，请联系管理员')
+            res.redirect('back')
+          }
+
+          connection.release();
+          if (error) throw error;
+
+        })
+
+      }
+
+
+
+    })
+
+
+  },
+  findUser: function(email, callback) {
+
+
+    pool.getConnection(function(error, connection) {
+
+      connection.query('SELECT * FROM user WHERE email = ?', [email], function(error, results, fields) {
+        console.log(results)
         if (!error) {
-          req.flash('success', '添加用户成功')
-          res.redirect('back')
+          typeof callback == 'function' && callback(results, connection)
         } else {
-          fs.unlink(req.files.file.path)
           req.flash('error', 'sql错误，请联系管理员')
+          res.redirect('back')
         }
-
-        connection.release();
-        if (error) throw error;
-
       })
 
     })

@@ -1,0 +1,47 @@
+  <%- include('header') %>
+  <%- include('nav') %>
+    <section id="content">
+      <section class="main padder">
+        <div class="clearfix">
+          <h4><i class="icon-edit"></i>撰写新文章</h4>
+        </div>
+        <form class="form-horizontal" method="post" data-validate="parsley">
+          <div class="row">
+            <div class="col-lg-8">
+              <section class="panel">
+
+                  <div class="form-group">
+                    <div class="col-lg-8">
+                      <input type="text" name="title" placeholder="在此输入标题" data-required="true" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <textarea name="content" placeholder="聊聊理想，扯扯技术" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[1,10000]"></textarea>
+                    </div>
+                  </div>
+
+              </section>
+            </div>
+            <div class="col-lg-4">
+              <section class="panel">
+                <header class="panel-heading">发布</header>
+                <div class="">
+                  <a href="#" class="btn btn-white btn-small">保存草稿</a>
+                  <a href="/admin/preview" class="btn btn-white btn-small">预览</a>
+                  <div class="line pull-in"></div>
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-info">发布</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </form>
+      </section>
+    </section>
+    <%- include('footer') %>
+    <script>
+    var simplemde = new SimpleMDE();
+
+    </script>
