@@ -13,7 +13,6 @@ router.post('/writing', checkLogin, function(req, res, next) {
 
 
 router.get('/preview', checkLogin, function(req, res, next) {
-
   article.preview(req, res, next)
 })
 
