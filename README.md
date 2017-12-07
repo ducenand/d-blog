@@ -50,10 +50,15 @@ express-winston: express 的 winston 日志中间件
 #### 2017.11.30 /增加文章表，后台实现添加文章
 #### 2017.12.01 /markdown文档保存前端样式调整
 #### 2017.12.02 /增加预览页
-
+#### 2017.12.05 /增加文章编辑，优化文章预览
+#### 2017.12.07 /增加所有文章列表
+ 
 
 ## 踩的坑
+
 #### express 处理参数中间件 body-parser、express-formidable 不能同时用，
+#### simplemde.value(<%= 放入markdown文本 %>); 复杂文本不能解析
+#### marked 解析出现第二次更新会出现两个目录
 
 
 
