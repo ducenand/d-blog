@@ -146,10 +146,10 @@ module.exports = {
     })
   },
   preview: function(req, res, next) {
-    const uid = req.session.user.id
+    // const uid = req.session.user.id
     const id = req.params.id
     pool.getConnection(function(error, connection) {
-      connection.query('SELECT * FROM post WHERE uid = ? and id = ?', [uid, id], function(error, results, fields) {
+      connection.query('SELECT * FROM post WHERE id = ?', [ id], function(error, results, fields) {
         if (!error) {
           res.render('preview', { data: results[0] })
         } else {
@@ -182,7 +182,7 @@ module.exports = {
     const status = req.fields.status
 
     const id = req.fields.id
-    const uid = req.session.user.id
+    // const uid = req.session.user.id
     const author = req.session.user.username
     let update_time = moment().format('YYYY-MM-DD HH:mm:ss')
     let summary
@@ -194,7 +194,7 @@ module.exports = {
 
     pool.getConnection(function(error, connection) {
 
-      connection.query('UPDATE post SET title=?,markdown_content=?,content=?,summary=?,toc=?,update_time=?,toc_status=?,status=?,author=? WHERE id=? AND uid =?', [title, markdown_content, content, summary, toc, update_time, toc_status, status,author, id, uid], function(error, results, fields) {
+      connection.query('UPDATE post SET title=?,markdown_content=?,content=?,summary=?,toc=?,update_time=?,toc_status=?,status=?,author=? WHERE id=?', [title, markdown_content, content, summary, toc, update_time, toc_status, status,author, id], function(error, results, fields) {
 
         if (!error) {
           typeof callback == 'function' && callback(results)
@@ -216,13 +216,12 @@ module.exports = {
     })
   },
   editArticle: function(req, res, next) {
-    const uid = req.session.user.id
+    // const uid = req.session.user.id
     const id = req.params.id
     pool.getConnection(function(error, connection) {
-      connection.query('SELECT * FROM post WHERE id = ? AND uid = ?', [id, uid], function(error, results, fields) {
+      connection.query('SELECT * FROM post WHERE id = ?', [id], function(error, results, fields) {
 
         if (!error) {
-
           res.render('editarticle', { data: results[0] })
         } else {
           jsonWrite(res)

@@ -27,7 +27,7 @@
             </div>
             <div class="col-lg-4">
               <section class="panel">
-                <header class="panel-heading">发布</header>
+                <header class="panel-heading">更新</header>
                 <div class="">
                   <div class="block">
 
@@ -35,12 +35,24 @@
                   </div>
                   <div class="block">
                     <div class="btn-group" data-toggle="buttons">
+
+                      <% if (data.toc_status == 1) { -%>
                       <label class="btn btn-small btn-info active">
                         <input type="radio" checked value="1" name="toc_status" id="option1"> <i class="icon-ok icon-large text-active"></i>显示目录
                       </label>
                       <label class="btn btn-small btn-danger">
                         <input type="radio" value="0" name="toc_status" id="option2"> <i class="icon-ok icon-large text-active"></i>不显示目录
                       </label>
+                      <% } else { -%>
+                      <label class="btn btn-small btn-info">
+                        <input type="radio" value="1" name="toc_status" id="option1"> <i class="icon-ok icon-large text-active"></i>显示目录
+                      </label>
+                      <label class="btn btn-small btn-danger  active">
+                        <input type="radio" checked value="0" name="toc_status" id="option2"> <i class="icon-ok icon-large text-active"></i>不显示目录
+                      </label>
+                      <% } -%>
+
+
                     </div>
                   </div>
                   <div class="line pull-in"></div>

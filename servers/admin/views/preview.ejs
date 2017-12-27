@@ -717,17 +717,37 @@
     visibility: hidden;
 }
 
+.page-header{
+  width: 1000px;
+  margin:0 auto;
+  /*text-align: center;*/
+}
+
+.page-header h1{
+  text-align: center;
+}
+
   </style>
   <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/arduino-light.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <h1><%= data.title %></h1>
-  <div>
-    <%- data.toc%>
-  </div>
-  <div class="markdown-body">
-    <%- data.content%>
+
+  <div class="container">
+    <div class="page-header">
+      <h1><%= data.title %></h1>
+      <% if (data.toc_status == 1) { -%>
+        <div>
+          <%- data.toc%>
+        </div>
+      <% } -%>
+
+    </div>
+
+    <div class="markdown-body">
+      <%- data.content%>
+    </div>
+
   </div>
 </body>
 
