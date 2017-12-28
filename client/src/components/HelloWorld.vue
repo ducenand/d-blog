@@ -9,7 +9,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to d-blog, wp fg dsafasdHello, this is a snippet.'
+      msg: 'what are you doing now'
     }
   }
 }

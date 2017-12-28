@@ -1,16 +1,18 @@
 {
-  "name": "d- ",
+  "name": "d-blog",
   "version": "1.0.0",
   "description": "d-blog",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack client/src/main.js client/dist/main.js",
-    "start": "node index.js"
+    "dev": "nodemon index.js",
+    "build": "node build/build.js"
   },
   "author": "ducen <316358726@qq.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
+    "babel-runtime": "^6.23.0",
     "body-parser": "^1.18.2",
     "config-lite": "^2.1.0",
     "connect-flash": "^0.1.1",
@@ -26,10 +28,10 @@
     "pygmentize-bundled": "^2.3.0",
     "redis": "^2.8.0",
     "sha1": "^1.1.1",
-    "winston": "^2.4.0",
     "vue": "^2.5.2",
+    "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1",
-    "babel-runtime": "^6.23.0"
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -45,13 +47,16 @@
     "babel-register": "^6.26.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.28.7",
     "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "node-notifier": "^5.1.2",
+    "nodemon": "^1.14.3",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "portfinder": "^1.0.13",
