@@ -10,12 +10,6 @@ module.exports = function(app) {
   })
 
 
-  // 获取参数 处理表单及文件上传的中间件
-  app.use(require('express-formidable')({
-    uploadDir: path.join(__dirname, './admin/public/img'), // 上传文件目录
-    keepExtensions: true// 保留后缀
-  }))
-
   /* api router */
   app.use('/api', require('./api/routes'))
 
@@ -25,12 +19,19 @@ module.exports = function(app) {
   // 设置模板引擎为 ejs
   app.set('view engine', 'ejs')
   app.use(express.static(path.join(__dirname, './admin/public')))
+    // 获取参数 处理表单及文件上传的中间件
+  app.use(require('express-formidable')({
+    uploadDir: path.join(__dirname, './admin/public/img'), // 上传文件目录
+    keepExtensions: true// 保留后缀
+  }))
   //中间件 获取参数
   // app.use(bodyParser.urlencoded({ extended: true }));
   // app.use(bodyParser.json());
 
   app.use('/admin', require('./admin/routes'))
   /** -----------admin router end----------- */
+
+
 
   app.use(function(req, res) {
     if (!res.headersSent) {

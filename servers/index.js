@@ -6,7 +6,7 @@ const redis = require('redis')
 const RedisStore = require('connect-redis')(session)
 const flash = require('connect-flash')
 const pkg = require('../package')
-
+const history = require('connect-history-api-fallback')
 
 import routes from './routes'
 //上线后可以删除webpack相关
@@ -14,6 +14,8 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 const app = express()
+app.use(history())
+
 import webpack_config from '../build/webpack.dev.conf'
 //引入webpack中间件
 const compiler = webpack(webpack_config)

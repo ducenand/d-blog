@@ -17,34 +17,48 @@ const jsonWrite = function(res, result) {
       msg: '操作失败'
     })
   } else {
-    res.json(result);
+    res.json({
+      code:0,
+      msg:'sussess',
+      data: result
+    });
   }
 }
 
 const pool = mysql.createPool(config.mysql)
+
 module.exports = {
+  getArticleList: function(req, res, next) {
 
-  getArticle: function(req, res, next) {
-    res.json({
-      code: '5',
-      msg: '操作失败'
+
+
+
+    pool.getConnection(function(error, connection) {
+      connection.query('SELECT * FROM post WHERE status=3',function(error, results, fields) {
+        if (!error) {
+          jsonWrite(res,results)
+        } else {
+          jsonWrite()
+        }
+        connection.release()
+      })
+
     })
-    // var id = req.params.id
-    // jsonWrite(res, { code: 0, msg: 'ddd' })
-    // pool.getConnection(function(error, connection) {
-    //   connection.query('INSERT INTO post (uid,create_time,status,author) value (?,?,?,?)', [uid,create_time,author,5], function(error, results, fields) {
+  },
+  getArticle: function(req, res, next) {
+    var id = req.query.id
+    pool.getConnection(function(error, connection) {
+      connection.query('SELECT * FROM post WHERE id = ?', [ id], function(error, results, fields) {
+        if (!error) {
+          jsonWrite(res,results[0])
+        } else {
+          jsonWrite()
+        }
 
-    //     if (!error) {
-    //       res.render('writing', { data: { article_id: results.insertId } })
-    //     } else {
-    //       req.flash('error', 'sql错误，请联系管理员')
-    //       res.redirect('back')
-    //     }
+        connection.release()
+      })
 
-    //     connection.release()
-
-    //   })
-    // })
+    })
   }
 
 }
