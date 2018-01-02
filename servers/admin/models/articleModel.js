@@ -108,7 +108,17 @@ module.exports = {
   writingPost: function(req, res, next) {
 
     const title = req.fields.title
-    const markdown_content = req.fields.content
+    var  markdown_content = req.fields.content
+
+    let summary
+    if (markdown_content.indexOf("<!--more-->") !== -1) {
+      var arr = markdown_content.split("<!--more-->");
+      summary = arr[0];
+      markdown_content = arr[1]
+    } else {
+      summary = '';
+    }
+
     const content = marked(markdown_content)
     const toc = tocObj.toHTML()
     const toc_status = req.fields.toc_status
@@ -119,12 +129,7 @@ module.exports = {
     const author = req.session.user.username
 
     let create_time = moment().format('YYYY-MM-DD HH:mm:ss')
-    let summary
-    if (markdown_content.indexOf("<!--more-->") !== -1) {
-      summary = markdown_content.split("<!--more-->")[0];
-    } else {
-      summary = '';
-    }
+
 
     pool.getConnection(function(error, connection) {
 
@@ -172,9 +177,20 @@ module.exports = {
   commonRequest: function(req,res,callback) {
 
     const title = req.fields.title
-    const markdown_content = req.fields.content
+    var markdown_content = req.fields.content
+
+    let summary
+    if (markdown_content.indexOf("<!--more-->") !== -1) {
+      var arr = markdown_content.split("<!--more-->");
+      summary = arr[0];
+      markdown_content = arr[1]
+    } else {
+      summary = '';
+    }
 
     const content = marked(markdown_content)
+
+
 
     const toc = tocObj.toHTML()
 
@@ -185,12 +201,6 @@ module.exports = {
     // const uid = req.session.user.id
     const author = req.session.user.username
     let update_time = moment().format('YYYY-MM-DD HH:mm:ss')
-    let summary
-    if (markdown_content.indexOf("<!--more-->") !== -1) {
-      summary = markdown_content.split("<!--more-->")[0];
-    } else {
-      summary = '';
-    }
 
     pool.getConnection(function(error, connection) {
 

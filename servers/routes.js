@@ -1,17 +1,18 @@
 const express = require('express')
-var bodyParser = require('body-parser')
+// var bodyParser = require('body-parser')
 const path = require('path')
 
 module.exports = function(app) {
   /* index router */
   app.use(express.static(path.join(__dirname, './')))
   app.get('/', function(req, res) {
-    res.sendFile(__dirname + '../client/index.html')
+    res.sendFile(__dirname + '/index.html')
   })
 
 
   /* api router */
   app.use('/api', require('./api/routes'))
+
 
   /* -----------admin router----------- */
   // 设置模板目录

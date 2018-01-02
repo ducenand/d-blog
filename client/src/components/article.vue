@@ -2,7 +2,10 @@
  <div class="container">
     <div class="page-header">
       <h1>{{articleData.title}}</h1>
-      <div v-if = "articleData.toc_status == 1" v-html="articleData.toc"></div>
+      <div class="time-author">
+        <i class="el-icon-time"></i> {{articleData.create_time}} <i class="el-icon-edit-outline"></i> {{articleData.author}}
+      </div>
+      <div class="menu" v-if = "articleData.toc_status == 1" v-html="articleData.toc"></div>
     </div>
 
     <div v-html="articleData.content" class="markdown-body"></div>
@@ -44,15 +47,40 @@ export default {
 <style lang="less" rel="stylesheet/less" scoped>
 
 @import '../assets/css/marked.css';
+.container{
+  box-sizing: border-box;
+  padding: 20px 20px 40px 20px;
+  background: #fff;
+  margin:0 25px 25px 25px;
+  max-width: 950px;
+  border-radius: 2px;
+  background-image: url(../assets/imgs/tiny_grid.png);
+  background-repeat: repeat;
+}
 .page-header{
-  width: 1000px;
-  margin:0 auto;
-  /*text-align: center;*/
+  font-size: 16px;
+  text-align: center;
+  margin:20px 0;
+  .time-author{
+    line-height: 40px;
+  }
+  h1{
+    text-align: center;
+    font-weight: 400;
+    font-size: 35px;
+  }
+}
+.menu{
+  text-align: left;
+  li a{
+    color: #337ab7;
+  }
+
 }
 
-.page-header h1{
-  text-align: center;
-}
+
+
+
 
 
 </style>

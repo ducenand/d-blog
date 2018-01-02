@@ -37,9 +37,11 @@ npm run build
 #### 2017.12.02 /增加预览页
 #### 2017.12.05 /增加文章编辑，优化文章预览
 #### 2017.12.07 /增加所有文章列表
-#### 2017.12.22 /中间开发了一个小程序，硬性指标，下班加点优先完成
+#### 2017.12.22 /中间开发了一个小程序，硬性指标，加班加点优先完成
 #### 2017.12.26 /融合vue-cli,前后台一个框架开发
 #### 2017.12.27 /supervisor 进程管理改为nodemon,前端支持less
+#### 2017.12.28 /首页、详情页初成，去除vue hash
+#### 2017.01.02 /前端页面布局
  
 
 ## 踩的坑
@@ -47,6 +49,7 @@ npm run build
 #### express 处理参数中间件 body-parser、express-formidable 不能同时用，
 #### simplemde.value(<%= 放入markdown文本 %>); 复杂文本不能解析
 #### marked 解析出现第二次更新会出现两个目录
+#### webpack error No PostCSS Config found in 要在utils.js 添加 plugins: () => [require('autoprefixer')]
 
 
 
