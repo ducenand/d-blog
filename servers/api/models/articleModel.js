@@ -30,11 +30,8 @@ const pool = mysql.createPool(config.mysql)
 module.exports = {
   getArticleList: function(req, res, next) {
 
-
-
-
     pool.getConnection(function(error, connection) {
-      connection.query('SELECT * FROM post WHERE status=3',function(error, results, fields) {
+      connection.query('SELECT * FROM post WHERE status=3 ORDER BY create_time DESC',function(error, results, fields) {
         if (!error) {
           jsonWrite(res,results)
         } else {

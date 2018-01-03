@@ -9,11 +9,12 @@
     </div>
 
     <div v-html="articleData.content" class="markdown-body"></div>
-
+    <div id="SOHUCS" :sid="articleData.id"></div>
   </div>
 </template>
 
 <script>
+require('../assets/js/changyan')
 export default {
   name: 'HelloWorld',
   data () {
@@ -22,6 +23,8 @@ export default {
     }
   },
   created: function() {
+
+
     var id = this.$route.params.id;
     var _this = this;
      this.axios.get('/api/getArticle/', {
@@ -39,6 +42,11 @@ export default {
 
       })
 
+  },mounted:function() {
+    window.changyan.api.config({
+      appid: 'cytoG84hF',
+      conf: 'prod_f34ae27e3ef94b851f1aba48f9ae9932'
+    })
   }
 }
 </script>
